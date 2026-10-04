@@ -103,7 +103,7 @@ class Date {
     public:
         // constructors
         Date() : _month(Jan), _year(2018) {} // default constructor
-        Date(int im, int year) : _month( static_cast<EMonth>(im)), _year(year) {} // value constructor
+        Date(int im, int year) : _month(Month(im)), _year(year) {} // value constructor
         Date(int day, string month_string, int year);
         Date(string month_string);
 
@@ -113,6 +113,8 @@ class Date {
         void outputDateAsInt(ostream &out);
 
     private:
+        enum EMonth { Jan=1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
+        // values
         int _day;
         Month _month;
         int _year;
