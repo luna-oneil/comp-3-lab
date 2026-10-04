@@ -109,8 +109,8 @@ class Date {
 
         void changeMonth(int month_num);
 
-        void outputDateAsString(ostream &out) const;
-        void outputDateAsInt(ostream &out) const;
+        void outputDateAsString(ostream &out);
+        void outputDateAsInt(ostream &out);
 
     private:
         int _day;
@@ -138,11 +138,11 @@ void Date::changeMonth(int month_num) {
 }
 
 // writes the current date in a "Dec 31, 2018" format
-void Date::outputDateAsString(ostream &out) const {
+void Date::outputDateAsString(ostream &out) {
     out << _month.MonthToString() << " " << _day << ", " << _year;
 }
 
 // writes the current date in a "12/31/2018" format
-void Date::outputDateAsInt(ostream &out) const {
+void Date::outputDateAsInt(ostream &out) {
     out << _month.MonthToInt() << "/" << _day << "/" << _year;
 }
