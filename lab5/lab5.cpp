@@ -27,3 +27,13 @@ class ComplexNumber {
     // friend functions
     friend ostream &operator<<(ostream &out, ComplexNumber complex);
 };
+
+ComplexNumber ComplexNumber::operator+(const ComplexNumber &right) const {
+    ComplexNumber result(real + right.real, imaginary + right.imaginary);
+    return result;
+}
+
+ComplexNumber ComplexNumber::operator-(const ComplexNumber &right) const {
+    ComplexNumber result(real - right.real, imaginary - right.imaginary);
+    return result;
+}
