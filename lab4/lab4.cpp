@@ -101,19 +101,20 @@ class Date {
     public:
         // constructors
         Date() : _month(1), _day(1), _year(2018) {} // default constructor
-        Date(int m, int d, int y) : _month(m), _day(d), _year(y) {} // value constructor
-        Date(int day, string month_string, int year);
-        Date(string month_string);
+        Date(int month, int day, int year) : _month(month), _day(day), _year(year) {} // value constructor
+        Date(int day, string month, int year);
+        Date(string month);
 
-        void changeMonth(int month_num);
+        void changeMonth(int month);
 
         void outputDateAsString(ostream &out);
         void outputDateAsInt(ostream &out);
 
-        friend ostream &operator<<(ostream &out, Date d);
+        friend ostream &operator<<(ostream &out, Date date);
 
+        // Pre-increment operator
         Date &operator++() {
-            _year++;
+            ++_year;
             return *this;
         }
 
@@ -124,22 +125,22 @@ class Date {
 };
 
 // constructor which takes day and year as int and month as string (e.g. "Dec")
-Date::Date(int day, string month_string, int year) : _day(day), _year(year) {
-    _month.setMonth(month_string);
+Date::Date(int day, string month, int year) : _day(day), _year(year) {
+    _month.setMonth(month);
 }
 
 // constructor which takes month as string and sets day and year to 1 and 1970
-Date::Date(string month_string) : _day(1), _year(1970) {
-    _month.setMonth(month_string);
+Date::Date(string month) : _day(1), _year(1970) {
+    _month.setMonth(month);
 }
 
 // change the month to a given month represented as an integer 1-12
-void Date::changeMonth(int month_num) {
-    if (month_num < 1 || month_num > 12) {
-        cerr << "\"" << month_num << "\" is not a valid month. Only values 1-12 are valid" << endl;
+void Date::changeMonth(int month) {
+    if (month < 1 || month > 12) {
+        cerr << "\"" << month << "\" is not a valid month. Only values 1-12 are valid" << endl;
         exit(1);
     }
-    _month.setMonth(month_num);
+    _month.setMonth(month);
 }
 
 // writes the current date in a "Dec 31, 2018" format
@@ -152,8 +153,9 @@ void Date::outputDateAsInt(ostream &out) {
     out << _month.MonthToInt() << "/" << _day << "/" << _year;
 }
 
-ostream &operator<<(ostream &out, Date d) {
-    out << d._month << " " << d._day << ", " << d._year;
+// friend non-member function for Date class operator
+ostream &operator<<(ostream &out, Date date) {
+    out << date._month << " " << date._day << ", " << date._year;
     return out;
 }
 
