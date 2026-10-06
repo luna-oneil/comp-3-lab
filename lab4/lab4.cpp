@@ -100,8 +100,8 @@ ostream& operator<< (ostream& out, Month m) {
 class Date {
     public:
         // constructors
-        Date() : _month(1), _day(1), _year(2018) {} // default constructor
-        Date(int m, int d, int y) : _month(m), _day(d), _year(y) {} // value constructor
+        Date() : _day(1), _month(1), _year(2018) {} // default constructor
+        Date(int m, int d, int y) : _day(d), _month(m), _year(y) {} // value constructor
         Date(int day, string month_string, int year);
         Date(string month_string);
 
