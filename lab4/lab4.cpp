@@ -8,7 +8,7 @@ using namespace std;
 // we are not nesting the Month class in the Date class or vice versa.
 class Month {
     friend class Date;
-    friend ostream& operator<< (ostream&, Month);
+    friend ostream& operator<< (ostream&, const Month);
 
     private:
         enum EMonth { Jan=1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
@@ -98,7 +98,7 @@ ostream& operator<< (ostream& out, Month m) {
 }
 
 class Date {
-    friend ostream& operator<< (ostream&, Month);
+    friend ostream& operator<< (ostream&, const Date&);
 
     public:
         // constructors
@@ -111,6 +111,8 @@ class Date {
 
         void outputDateAsString(ostream &out);
         void outputDateAsInt(ostream &out);
+        // Pre-increment operator 
+        Date& operator++();
 
     private:
         enum EMonth { Jan=1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
@@ -147,4 +149,14 @@ void Date::outputDateAsString(ostream &out) {
 // writes the current date in a "12/31/2018" format
 void Date::outputDateAsInt(ostream &out) {
     out << _month.MonthToInt() << "/" << _day << "/" << _year;
+}
+// friend non member function for Date class operator
+ostream& operator<< (ostream& out, const Date& date){
+    out << date._month << " "  << date._day << ", " << date._year;
+
+}
+// Pre-increment ++, add 1 to year
+Date& Date::operator++(){
+    ++_year;
+    return *this;
 }
