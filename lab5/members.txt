@@ -1,0 +1,5 @@
+Luna: Class definition and Multiplcation and Division
+Keira: Accessors and Mutators
+Lynn: Main
+Kaitlyn: Addition and Subtraction
+Vienna: << and !
