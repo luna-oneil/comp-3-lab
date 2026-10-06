@@ -43,3 +43,13 @@ void setReal(double real) {
 void setImaginary(double imaginary){
        _imaginary = imaginary;
 }
+
+ComplexNumber ComplexNumber::operator+(const ComplexNumber &right) const {
+    ComplexNumber result(real + right.real, imaginary + right.imaginary);
+    return result;
+}
+
+ComplexNumber ComplexNumber::operator-(const ComplexNumber &right) const {
+    ComplexNumber result(real - right.real, imaginary - right.imaginary);
+    return result;
+}
