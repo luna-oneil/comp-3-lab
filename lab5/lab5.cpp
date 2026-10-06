@@ -53,3 +53,16 @@ ComplexNumber ComplexNumber::operator-(const ComplexNumber &right) const {
     ComplexNumber result(real - right.real, imaginary - right.imaginary);
     return result;
 }
+
+ostream &operator<<(ostream &out, ComplexNumber complex) {
+    if (complex.imaginary >= 0.0) {
+        out << complex.getReal() << " + " << complex.getImaginary() << endl;
+    } else {
+        out << complex.getReal() << " - " << complex.getImaginary() << endl;
+    }
+}
+
+ComplexNumber ComplexNumber::operator!() const {
+    ComplexNumber temp = ComplexNumber(real, -imaginary);
+    return temp;
+}
