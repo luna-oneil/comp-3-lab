@@ -98,12 +98,10 @@ ostream& operator<< (ostream& out, Month m) {
 }
 
 class Date {
-    friend ostream& operator<< (ostream&, Month);
-
     public:
         // constructors
-        Date() : _month(Jan), _year(2018) {} // default constructor
-        Date(int im, int year) : _month(Month(im)), _year(year) {} // value constructor
+        Date() : _month(1), _day(1), _year(2018) {} // default constructor
+        Date(int m, int d, int y) : _month(m), _day(d), _year(y) {} // value constructor
         Date(int day, string month_string, int year);
         Date(string month_string);
 
@@ -112,9 +110,14 @@ class Date {
         void outputDateAsString(ostream &out);
         void outputDateAsInt(ostream &out);
 
+        friend ostream &operator<<(ostream &out, Date d);
+
+        Date &operator++() {
+            _year++;
+            return *this;
+        }
+
     private:
-        enum EMonth { Jan=1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
-        // values
         int _day;
         Month _month;
         int _year;
@@ -147,4 +150,54 @@ void Date::outputDateAsString(ostream &out) {
 // writes the current date in a "12/31/2018" format
 void Date::outputDateAsInt(ostream &out) {
     out << _month.MonthToInt() << "/" << _day << "/" << _year;
+}
+
+ostream &operator<<(ostream &out, Date d) {
+    out << d._month << " " << d._day << ", " << d._year;
+    return out;
+}
+
+int main() {
+    // Test the default and value constructors
+    Date d1;
+    Date d2(2, 1, 2018);
+    Date d3(1, "Mar", 2018);
+
+    cout << "With the following declarations:" << endl;
+    cout << "   Date d1, d2(2, 1, 2018), d3(\"Mar\", 1, 2018);" << endl;
+    cout << "...and using operator<< :" << endl;
+
+    // Test the overloaded << operator
+    cout << "d1 == " << d1 << endl;
+    cout << "d2 == " << d2 << endl;
+    cout << "d3 == " << d3 << endl;
+    cout << endl;
+
+    // Test the changeMonth function
+    d3.changeMonth(4);
+    cout << "After d3.changeMonth(4):" << endl;
+    cout << "d3 == " << d3 << endl;
+    cout << endl;
+
+    // Test the integer month constructor
+    Date d4(12, 31, 2018);
+    cout << "With the following declaration:" << endl;
+    cout << "   Date d4(12, 31, 2018);" << endl;
+
+    // Test outputDateAsInt
+    cout << "d4.outputDateAsInt(cout) outputs ";
+    d4.outputDateAsInt(cout);
+    cout << endl;
+
+    // Test outputDateAsString.
+    cout << "d4.outputDateAsString(cout) outputs ";
+    d4.outputDateAsString(cout);
+    cout << endl;
+
+    // Test the pre-increment operator
+    ++d4;
+    cout << endl;
+    cout << "++d4 == " << d4 << endl;
+
+    return 0;
 }
