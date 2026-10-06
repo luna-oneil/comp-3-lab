@@ -5,12 +5,12 @@ using namespace std;
 
 class ComplexNumber {
  private:
-    double real;
-    double imaginary;
+    double _real;
+    double _imaginary;
  public:
     ComplexNumber(): real(0.0), imaginary(0.0) {}
-    ComplexNumber(double real): real(real), imaginary(0.0) {}
-    ComplexNumber(double real, double imaginary): real(real), imaginary(imaginary) {}
+    ComplexNumber(double real): real(_real), imaginary(0.0) {}
+    ComplexNumber(double real, double imaginary): real(_real), imaginary(_imaginary) {}
 
     double getReal() const;
     double getImaginary() const;
@@ -27,3 +27,19 @@ class ComplexNumber {
     // friend functions
     friend ostream &operator<<(ostream &out, ComplexNumber complex);
 };
+
+double getReal() const {
+       return _real;
+}
+
+double getImaginary() const {
+       return _imaginary;
+}
+
+void setReal(double real) {
+       _real = real;
+}
+
+void setImaginary(double imaginary){
+       _imaginary = imaginary;
+}
