@@ -1,3 +1,11 @@
+/*
+Luna: Listify
+Keira: Bullet Points 1, 2, 3
+Lynn: Bullet Points 4, 5, 6
+Kaitlyn: Bullet Points 7, 8, 9
+Vienna: Listify
+*/
+
 #undef debug
 
 #include <iostream>
