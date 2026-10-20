@@ -123,14 +123,14 @@ int main(){
         numbers.push_back(ComplexNumber(n, 2 * n));
     }
 
-    // First loop: using an integer index
+    // First loop using an integer index
     cout << "\nVector output using indexed for-loop:" << endl;
 
     for (int i = 0; i < numbers.size(); i++){
         cout << numbers[i] << endl;
     }
 
-    // Second loop: using an iterator
+    // Second loop using an iterator
     cout << "\nVector output using an iterator in for-loop:" << endl;
 
     for (vector<ComplexNumber>::iterator it = numbers.begin(); it != numbers.end(); ++it){
