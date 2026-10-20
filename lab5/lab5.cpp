@@ -60,9 +60,80 @@ ostream &operator<<(ostream &out, ComplexNumber complex) {
     } else {
         out << complex.getReal() << " - " << complex.getImaginary() << endl;
     }
+    return out;
 }
 
 ComplexNumber ComplexNumber::operator!() const {
     ComplexNumber temp = ComplexNumber(real, -imaginary);
     return temp;
+}
+
+// Main function use for testing.
+int main(){
+    cout << "Value of c1 (default constructor): " << endl;
+
+    ComplexNumber c1;
+    // default should give real 0 and imaginary 0.
+    cout << "c1.getReal() == " << c1.getReal() 
+            << ", c1.getImaginary() == " << c1.getImaginary()
+                << endl;
+    // testing value constructor.
+    cout << "Value of c2 (value constructor): " << endl;
+    
+    ComplexNumber c2(1, 2);
+    cout << "c2.getReal() == " << c2.getReal()
+            << ", c2.getImaginary() == " << c2.getImaginary()
+                << endl;
+    
+    // tests between c2 and c3.
+    ComplexNumber c3(3,4);
+
+    // addition
+    cout << "c2 + c3 (1+2i + 3+4i) == "
+            << c2 + c3 << endl;
+    // substraction
+    cout << "c2 - c3 (1+2i - 3+4i) == "
+            << c2 - c3 << endl;
+    // multiplication
+    //cout << "c2 * c3 (1+2i * 3+4i) == "
+    //        << c2 * c3 << endl;
+    // division
+    //cout << "c2 / c3 (1+2i / 3+4i) == "
+    //        << c2 / c3 << endl;
+    // combined division and multiplication
+    // cout << "(c2/c3) + (c2*c3) == "
+    //      << (c2 / c3) + (c2 * c3) << endl;
+
+    // conjugate
+    cout << "Conjugate of c2 (1+2i) == "
+            << !c2 << endl;
+    
+    // Test mutators
+    ComplexNumber c4;
+    c4.setReal(5);
+    c4.setImaginary(6);
+
+    cout << "\nValue of c4 after mutators: "
+            << c4 << endl;
+    
+    // Create a vector of 10 complex numbers
+    vector<ComplexNumber> numbers;
+
+    for (int n = 0; n < 10; n++){
+        numbers.push_back(ComplexNumber(n, 2 * n));
+    }
+
+    // First loop: using an integer index
+    cout << "\nVector output using indexed for-loop:" << endl;
+
+    for (int i = 0; i < numbers.size(); i++){
+        cout << numbers[i] << endl;
+    }
+
+    // Second loop: using an iterator
+    cout << "\nVector output using an iterator in for-loop:" << endl;
+
+    for (vector<ComplexNumber>::iterator it = numbers.begin(); it != numbers.end(); ++it){
+        cout << *it << endl;
+    }
 }
