@@ -56,9 +56,9 @@ ComplexNumber ComplexNumber::operator-(const ComplexNumber &right) const {
 
 ostream &operator<<(ostream &out, ComplexNumber complex) {
     if (complex.imaginary >= 0.0) {
-        out << complex.getReal() << " + " << complex.getImaginary() << endl;
+        out << complex.getReal() << " + " << complex.getImaginary() << "i" << endl;
     } else {
-        out << complex.getReal() << " - " << complex.getImaginary() << endl;
+        out << complex.getReal() << " - " << complex.getImaginary() << "i" << endl;
     }
     return out;
 }
