@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -33,6 +34,10 @@ public:
 	void inOrderDisplay(ostream&) const;
 	void preOrderDisplay(ostream&) const;
 	void postOrderDisplay(ostream&) const;
+
+    // listify
+    void BSTNode<T>::listify(list<T>& li) const;
+
 	
 	// The insertion operator below uses in-order display.
 	// ***** Change the implementation of this insertion operator
@@ -173,6 +178,18 @@ void BSTNode<T>::postOrderDisplay(ostream& out) const {
 	// self
 	out << _data;
 }
+
+template<typename T>
+void BSTNode<T>::listify(list<T>& li) const {
+	if (_left != nullptr) {
+	    _left->listify(li);
+	}
+	li.push_back(_data);
+	if (_right != nullptr) {
+	    _right->listify(li);
+	}
+}
+
 
 
 int main(void) {
