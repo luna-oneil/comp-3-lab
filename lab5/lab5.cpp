@@ -1,3 +1,11 @@
+/*
+Luna: Class definition and Multiplcation and Division
+Keira: Accessors and Mutators
+Lynn: Main
+Kaitlyn: Addition and Subtraction
+Vienna: << and !
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -94,39 +102,31 @@ int main(){
     ComplexNumber c2(1, 2);
     cout << "c2.getReal() == " << c2.getReal()
             << ", c2.getImaginary() == " << c2.getImaginary()
-                << endl;
+                << "\n\n";
     
     // tests between c2 and c3.
     ComplexNumber c3(3,4);
 
     // addition
     cout << "c2 + c3 (1+2i + 3+4i) == "
-            << c2 + c3 << endl;
+            << c2 + c3;
     // substraction
     cout << "c2 - c3 (1+2i - 3+4i) == "
-            << c2 - c3 << endl;
+            << c2 - c3;
     // multiplication
     cout << "c2 * c3 (1+2i * 3+4i) == "
-            << c2 * c3 << endl;
+            << c2 * c3;
     // division
     cout << "c2 / c3 (1+2i / 3+4i) == "
-            << c2 / c3 << endl;
+            << c2 / c3;
     // combined division and multiplication
     cout << "(c2/c3) + (c2*c3) == "
-            << (c2 / c3) + (c2 * c3) << endl;
+            << (c2 / c3) + (c2 * c3);
 
     // conjugate
     cout << "Conjugate of c2 (1+2i) == "
-            << !c2 << endl;
-    
-    // Test mutators
-    ComplexNumber c4;
-    c4.setReal(5);
-    c4.setImaginary(6);
+            << !c2;
 
-    cout << "\nValue of c4 after mutators: "
-            << c4 << endl;
-    
     // Create a vector of 10 complex numbers
     vector<ComplexNumber> numbers;
 
@@ -138,13 +138,13 @@ int main(){
     cout << "\nVector output using indexed for-loop:" << endl;
 
     for (int i = 0; i < numbers.size(); i++){
-        cout << numbers[i] << endl;
+        cout << numbers[i];
     }
 
     // Second loop using an iterator
     cout << "\nVector output using an iterator in for-loop:" << endl;
 
     for (vector<ComplexNumber>::iterator it = numbers.begin(); it != numbers.end(); ++it){
-        cout << *it << endl;
+        cout << *it;
     }
 }
