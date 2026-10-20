@@ -109,14 +109,14 @@ int main(){
     cout << "c2 - c3 (1+2i - 3+4i) == "
             << c2 - c3 << endl;
     // multiplication
-    //cout << "c2 * c3 (1+2i * 3+4i) == "
-    //        << c2 * c3 << endl;
+    cout << "c2 * c3 (1+2i * 3+4i) == "
+            << c2 * c3 << endl;
     // division
-    //cout << "c2 / c3 (1+2i / 3+4i) == "
-    //        << c2 / c3 << endl;
+    cout << "c2 / c3 (1+2i / 3+4i) == "
+            << c2 / c3 << endl;
     // combined division and multiplication
-    // cout << "(c2/c3) + (c2*c3) == "
-    //      << (c2 / c3) + (c2 * c3) << endl;
+    cout << "(c2/c3) + (c2*c3) == "
+            << (c2 / c3) + (c2 * c3) << endl;
 
     // conjugate
     cout << "Conjugate of c2 (1+2i) == "
