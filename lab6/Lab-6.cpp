@@ -145,30 +145,30 @@ void BSTNode<T>::preOrderDisplay(ostream& out) const {
 	out << _data;
 	// left
 	if (_left != nullptr) {
-	    _left->inOrderDisplay(out);
 	    out << ", ";
+		_left->preOrderDisplay(out);
 	}
 	// right
 	if (_right != nullptr) {
 	    out << ", ";
-	    _right->inOrderDisplay(out);
+	    _right->preOrderDisplay(out);
 	}
 }
 
 template<typename T>
 void BSTNode<T>::postOrderDisplay(ostream& out) const {
 	// comment out the next line when you've completed this function!
-	cout << "BSTNode<T>::postOrderDisplay called\n";
+	//cout << "BSTNode<T>::postOrderDisplay called\n";
 	
 	// left
 	if (_left != nullptr) {
-	    _left->inOrderDisplay(out);
+	    _left->postOrderDisplay(out);
 	    out << ", ";
 	}
 	// right
 	if (_right != nullptr) {
+	    _right->postOrderDisplay(out);
 	    out << ", ";
-	    _right->inOrderDisplay(out);
 	}
 	// self
 	out << _data;
