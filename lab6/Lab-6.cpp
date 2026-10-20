@@ -101,7 +101,7 @@ void BSTNode<T>::insert(const T& data) {
 			return;
 		}
 		else {
-			_left.insert(data);
+			_left->insert(data);
 			return;
 		}
 	}
@@ -112,7 +112,7 @@ void BSTNode<T>::insert(const T& data) {
 			return;
 		}
 		else {
-			_right.insert(data);
+			_right->insert(data);
 			return;
 		}
 	}
