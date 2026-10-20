@@ -54,6 +54,20 @@ ComplexNumber ComplexNumber::operator-(const ComplexNumber &right) const {
     return result;
 }
 
+ComplexNumber ComplexNumber::operator*(const ComplexNumber& right) const {
+    ComplexNumber result(real * right.real - imaginary * right.imaginary,
+                         real * right.imaginary + imaginary * right.real);
+    return result;
+}
+
+ComplexNumber ComplexNumber::operator/(const ComplexNumber& right) const {
+    double denominator = right.real * right.real + right.imaginary * right.imaginary;
+
+    ComplexNumber result((real * right.real + imaginary * right.imaginary) / denominator,
+                         (imaginary * right.real - real * right.imaginary) / denominator);
+    return result;
+}
+
 ostream &operator<<(ostream &out, ComplexNumber complex) {
     if (complex.imaginary >= 0.0) {
         out << complex.getReal() << " + " << complex.getImaginary() << "i" << endl;
