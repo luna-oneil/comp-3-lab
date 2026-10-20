@@ -37,12 +37,12 @@ double ComplexNumber::getImaginary() const {
     return imaginary;
 }
 
-void ComplexNumber::setReal(double real) {
-    real = real;
+void ComplexNumber::setReal(double r) {
+    real = r;
 }
 
-void ComplexNumber::setImaginary(double imaginary){
-    imaginary = imaginary;
+void ComplexNumber::setImaginary(double imag){
+    imaginary = imag;
 }
 
 ComplexNumber ComplexNumber::operator+(const ComplexNumber &right) const {
@@ -70,11 +70,7 @@ ComplexNumber ComplexNumber::operator/(const ComplexNumber& right) const {
 }
 
 ostream &operator<<(ostream &out, ComplexNumber complex) {
-    if (complex.imaginary >= 0.0) {
-        out << complex.getReal() << " + " << complex.getImaginary() << "i" << endl;
-    } else {
-        out << complex.getReal() << " - " << complex.getImaginary() << "i" << endl;
-    }
+    out << complex.getReal() << " + " << complex.getImaginary() << "i" << endl;
     return out;
 }
 
