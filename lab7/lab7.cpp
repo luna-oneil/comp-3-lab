@@ -22,9 +22,9 @@ class BSTNode {
 public:
 	// Constructors, etc.
 	BSTNode() : _data(0), _left(nullptr), _right(nullptr) {} // default constructor
-    BSTNode(T data) : _left(nullptr), _right(nullptr) { _data = data; } // value constructor
+  BSTNode(T data) : _left(nullptr), _right(nullptr) { _data = data; } // value constructor
 	BSTNode(BSTNode&); // copy constructor
-    ~BSTNode(); // destructor
+  ~BSTNode(); // destructor
 	BSTNode& operator= (BSTNode&); // copy assignment operator
 	
 	// ***** Your group will define/implement the insert function
@@ -32,7 +32,7 @@ public:
 	void insert(const T& data);
 	
 	// Accessor and mutator functions
-    BSTNode<T>* getLeft() const { return _left; }
+  BSTNode<T>* getLeft() const { return _left; }
 	BSTNode<T>* getRight() const { return _right; }
 	T& getData() const { return _data; }
 	void setData(const T& data) { _data = data; }
@@ -44,8 +44,8 @@ public:
 	void preOrderDisplay(ostream&) const;
 	void postOrderDisplay(ostream&) const;
 
-    // listify
-    void BSTNode<T>::listify(list<T>& li) const;
+  // listify
+  void listify(list<T>& li) const;
 
 	
 	// The insertion operator below uses in-order display.
