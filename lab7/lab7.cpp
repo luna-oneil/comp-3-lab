@@ -268,7 +268,7 @@ int main(void) {
 
 	map<string, list<int>> mi;
 	mi["iroot4List"] = iroot4List;
-	//mi["irootList"] = irootList;
+	mi["irootList"] = irootList;
 
 	cout << "\niroot4 = " << iroot4 << "\n" << endl;
 
@@ -279,7 +279,13 @@ int main(void) {
         for(auto &li: iter.second){
             cout << li << " ";
         }
+		cout << endl;
 	}
+
+	cout << endl << "Using map index operator:" << endl;
+	/*
+		Do the map index operator print here.
+	*/
 
 #ifdef debug	
 	BSTNode<int> iroot2(iroot); // use copy constructor
