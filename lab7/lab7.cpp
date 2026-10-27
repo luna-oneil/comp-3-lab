@@ -218,6 +218,45 @@ int main(void) {
 	sroot.insert("Saturday");
 	cout << "sroot == " << sroot << endl;
 
+	list<int> irootList;
+	iroot.listify(irootList);
+
+	cout << "\nCreating irootList via iroot.listify\n";
+	cout << "\nirootList (forward iterator) == ";
+	for (list<int>::iterator it = irootList.begin(); it != irootList.end(); ++it) {
+		cout << *it << " ";
+	}
+
+	cout << "\nirootList (reverse iterator) == ";
+	for (list<int>::reverse_iterator it = irootList.rbegin(); it != irootList.rend(); ++it) {
+		cout << *it << " ";
+	}
+
+	cout << "\nirootList (ranged for loop) == ";
+	for(auto& iroot: irootList) {
+		cout << iroot << " ";
+	}
+	cout << "\n";
+
+	list<string> srootList;
+	sroot.listify(srootList);
+
+	cout << "\nCreating srootList via sroot.listify\n";
+	cout << "\nsrootList (forward iterator) == ";
+	for (list<string>::iterator it = srootList.begin(); it != srootList.end(); ++it) {
+		cout << *it << " ";
+	}
+
+	cout << "\nsrootList (reverse iterator) == ";
+	for (list<string>::reverse_iterator it = srootList.rbegin(); it != srootList.rend(); ++it) {
+		cout << *it << " ";
+	}
+
+	cout << "\nsrootList (ranged for loop) == ";
+	for(auto& sroot: srootList) {
+		cout << sroot << " ";
+	}
+	cout << "\n";
 
 	BSTNode<int> iroot4(1000);
 	iroot4.insert(2000);
