@@ -11,6 +11,7 @@ Vienna: Listify
 #include <iostream>
 #include <string>
 #include <list>
+#include <map>
 
 using namespace std;
 
@@ -216,6 +217,20 @@ int main(void) {
 	sroot.insert("Friday");
 	sroot.insert("Saturday");
 	cout << "sroot == " << sroot << endl;
+
+
+	BSTNode<int> iroot4;
+	iroot4.insert(1000);
+	iroot4.insert(2000);
+	iroot4.insert(3000);
+	iroot4.insert(4000);
+	iroot4.insert(5000);
+	list<int> iroot4List;
+	iroot4.listify(iroot4List);
+
+	map<string, list<int>> mi;
+	mi["iroot4List"] = iroot4List;
+	//mi["irootList"] = irootList;
 
 #ifdef debug	
 	BSTNode<int> iroot2(iroot); // use copy constructor
