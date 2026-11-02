@@ -283,9 +283,18 @@ int main(void) {
 	}
 
 	cout << endl << "Using map index operator:" << endl;
-	/*
-		Do the map index operator print here.
-	*/
+
+		cout << "mi[\"irootList\"] == ";
+	for (auto& li : mi["irootList"]) {
+		cout << li << " ";
+	}
+	cout << endl;
+
+	cout << "mi[\"iroot4List\"] == ";
+	for (auto& li : mi["iroot4List"]) {
+		cout << li << " ";
+	}
+	cout << endl;
 
 #ifdef debug	
 	BSTNode<int> iroot2(iroot); // use copy constructor
