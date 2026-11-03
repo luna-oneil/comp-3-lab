@@ -1,0 +1,17 @@
+Luna: Add the PerCourse class as a derived class of the PayKind class. PerCourse will have one
+member variable, an unsigned called _feePerCourse. Declare and implement any additional
+functions required by PerCourse.
+
+Keira: Add the EmployeeKind base class (with no member variables). Declare and implement any
+additional functions required by EmployeeKind.
+
+Lynn: Add the PartTime class as a derived class of EmployeeKind (with one member variable, an
+unsigned called _maxHours). Declare and implement any additional functions required by
+PartTime.
+
+Luna: Add the Adjunct class as a derived class of Faculty, PerCourse, and PartTime (with one
+member variable, an unsigned called _maxCourses). Declare and implement any additional
+functions required by Adjunct.
+
+Kaitlyn: Add PartTime as a base class for Grader. Update the main function to accommodate your changes to existing classes. Also, declare and display
+an instance of your new Adjunct class
