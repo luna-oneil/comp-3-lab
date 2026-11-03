@@ -1,4 +1,4 @@
-Luna: Add the PerCourse class as a derived class of the PayKind class. PerCourse will have one
+Vienna: Add the PerCourse class as a derived class of the PayKind class. PerCourse will have one
 member variable, an unsigned called _feePerCourse. Declare and implement any additional
 functions required by PerCourse.
 
