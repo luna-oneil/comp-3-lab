@@ -416,39 +416,6 @@ ostream& operator<< (ostream& out, const NTT& n) {
     return out;
 }
 
-
-int main (void) {
-	UMLPerson p;
-	cout << "UMLPerson():\n" << p << endl;
-
-    Student s;
-    cout << "Student():\n" << s << endl;
-
-	Undergrad u;
-	cout << "Undergrad():\n" << u << endl;
-
-	Grader g;
-	cout << "Grader():\n" << g << endl;
-
-    Undergrad s1("Sally", "Brown", "110 Canal Street", 12345678, 4.0, "CS", "Tom Wilkes", "senior");
-    Undergrad s2("Jimmy", "Smith", "99 Canal Street", 87654321, 3.0, "CS", "Tom Wilkes", "freshman");
-
-    cout << "Undergrad s1(Sally...):\n" << s1 << endl;
-	cout << "Undergrad s2(Jimmy...):\n" << s2 << endl;
-
-	Grader g1("John", "Doe", "89 Canal Street", 54329876, 3.5, "CS", "Tom Wilkes", "junior",
-			  "COMP.2010", 25.00);
-	cout << "Grader g1(John...):\n" << g1 << endl;
-
-	Grader g2(g1); // invoke copy constructor
-	cout << "Grader g2(copy of g1 - John...):\n" << g2 << endl;
-
-	NTT n1("Tom", "Wilkes", "Foo Street", 52901256, "123-45-6789", "Computer Science", "Assistant Teaching Professor", 12345);
-	cout << "NTT Faculty n1(Tom...):\n" << n1 << endl;
-
-    return 0;
-}
-
 class PerCourse: public PayKind {
     friend ostream& operator<< (ostream&, const PerCourse&);
 
@@ -497,4 +464,65 @@ ostream& operator<<(ostream& out, const PartTime& ptime) {
     out << "Maximum hours:\t\t" << ptime.getMaxHours() << endl;
 
     return out;
+}
+
+class Adjunct : public Faculty, public PerCourse, public PartTime {
+ private:
+		unsigned _maxCourses;
+ public:
+		Adjunct(): Faculty(), PerCourse(), PartTime(), _maxCourses(0) {}
+		Adjunct(std::string firstName, std::string lastName, std::string address,
+				unsigned int _IDNumber, std::string SSN, std::string department, unsigned int fee,
+			  unsigned int maxHours, unsigned int maxCourses):
+				Faculty(firstName, lastName, address, _IDNumber, SSN, department),
+				PerCourse(fee), PartTime(maxHours), _maxCourses(maxCourses) {}
+		Adjunct(const Adjunct& other): Faculty(other), PerCourse(other), PartTime(other),
+				_maxCourses(other.getMaxCourses()) {}
+		unsigned int getMaxCourses() const { return _maxCourses; }
+		~Adjunct() { 
+			std::cout << "Destructor called for Adjunct " << this->getFirstName()
+					<< " " << this->getLastName() << std::endl;
+		}
+		void output(ostream& out) const { out << *this; }
+		friend ostream& operator<< (ostream&, const Adjunct&);
+};
+
+ostream& operator<< (ostream& out, const Adjunct& a) {
+	a.Faculty::output(out);
+	a.PerCourse::output(out);
+	a.PartTime::output(out);
+  out << "Max Courses:\t" << a.getMaxCourses() << std::endl;
+	return out;
+}
+
+int main (void) {
+	UMLPerson p;
+	cout << "UMLPerson():\n" << p << endl;
+
+    Student s;
+    cout << "Student():\n" << s << endl;
+
+	Undergrad u;
+	cout << "Undergrad():\n" << u << endl;
+
+	Grader g;
+	cout << "Grader():\n" << g << endl;
+
+    Undergrad s1("Sally", "Brown", "110 Canal Street", 12345678, 4.0, "CS", "Tom Wilkes", "senior");
+    Undergrad s2("Jimmy", "Smith", "99 Canal Street", 87654321, 3.0, "CS", "Tom Wilkes", "freshman");
+
+    cout << "Undergrad s1(Sally...):\n" << s1 << endl;
+	cout << "Undergrad s2(Jimmy...):\n" << s2 << endl;
+
+	Grader g1("John", "Doe", "89 Canal Street", 54329876, 3.5, "CS", "Tom Wilkes", "junior",
+			  "COMP.2010", 25.00);
+	cout << "Grader g1(John...):\n" << g1 << endl;
+
+	Grader g2(g1); // invoke copy constructor
+	cout << "Grader g2(copy of g1 - John...):\n" << g2 << endl;
+
+	NTT n1("Tom", "Wilkes", "Foo Street", 52901256, "123-45-6789", "Computer Science", "Assistant Teaching Professor", 12345);
+	cout << "NTT Faculty n1(Tom...):\n" << n1 << endl;
+
+    return 0;
 }
