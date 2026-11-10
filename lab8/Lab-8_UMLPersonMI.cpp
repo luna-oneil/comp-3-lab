@@ -470,3 +470,29 @@ ostream& operator<< (ostream& out, const PerCourse& pc) {
     out << "Fee per course:\t\t" << pc.getFee() << endl;
     return out;
 }
+
+class EmployeeKind {
+	/*
+		Empty
+	*/
+};
+
+class PartTime : public EmployeeKind {
+ private:
+	unsigned _maxHours;
+ public:
+	PartTime() : _maxHours(0){}
+	PartTime(int maxHours) : _maxHours(maxHours){}
+	~PartTime(){cout << "Destuctor called for PartTime";}
+
+	unsigned getMaxHours() const { return _maxHours; }
+	//void output(ostream& out) const { out << *this;}
+
+	 friend ostream& operator<< (ostream&, const PartTime&);
+};
+ostream& operator<<(ostream& out, const PartTime& ptime) {
+	//ptime.EmployeeKind::output(out);
+    out << "Maximum hours:\t\t" << ptime.getMaxHours() << endl;
+
+    return out;
+}
