@@ -442,8 +442,12 @@ class EmployeeKind {
 	public:
 		void output(ostream& out) const { out << *this; }
 
-	friend ostream& operator<< (ostream&, const EmployeeKind&);
+	friend ostream& operator<< (ostream& out, const EmployeeKind& e);
 };
+
+ostream& operator<< (ostream& out, const EmployeeKind& e) {
+	return out;
+}
 
 class PartTime : public EmployeeKind {
  private:
@@ -524,5 +528,8 @@ int main (void) {
 	NTT n1("Tom", "Wilkes", "Foo Street", 52901256, "123-45-6789", "Computer Science", "Assistant Teaching Professor", 12345);
 	cout << "NTT Faculty n1(Tom...):\n" << n1 << endl;
 
-    return 0;
+	Adjunct a1("John", "Pork", "Hi Street", 24, "social security", "English", 1, 256, 128);
+	cout << "Adjunct Faculty n1(John...):\n" << a1 << endl;
+
+  return 0;
 }
