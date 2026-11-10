@@ -472,9 +472,10 @@ ostream& operator<< (ostream& out, const PerCourse& pc) {
 }
 
 class EmployeeKind {
-	/*
-		Empty
-	*/
+	public:
+		void output(ostream& out) const { out << *this; }
+
+	friend ostream& operator<< (ostream&, const EmployeeKind&);
 };
 
 class PartTime : public EmployeeKind {
@@ -490,6 +491,7 @@ class PartTime : public EmployeeKind {
 
 	 friend ostream& operator<< (ostream&, const PartTime&);
 };
+
 ostream& operator<<(ostream& out, const PartTime& ptime) {
 	//ptime.EmployeeKind::output(out);
     out << "Maximum hours:\t\t" << ptime.getMaxHours() << endl;
