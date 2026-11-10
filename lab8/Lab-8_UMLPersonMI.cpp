@@ -154,15 +154,35 @@ class Undergrad : public Student { // derived class
 		string _classRank; // freshman, sophomore, junior, or senior
 };
 
+class EmployeeKind {
+	public:
+		void output(ostream& out) const { out << *this; }
 
-class Grader : public Undergrad, public Hourly { // derived class
+	friend ostream& operator<< (ostream& out, const EmployeeKind& e);
+};
+
+class PartTime : public EmployeeKind {
+ private:
+	unsigned _maxHours;
+ public:
+	PartTime() : _maxHours(0){}
+	PartTime(int maxHours) : _maxHours(maxHours){}
+	~PartTime(){cout << "Destuctor called for PartTime";}
+
+	unsigned getMaxHours() const { return _maxHours; }
+	void output(ostream& out) const { out << *this;}
+
+	 friend ostream& operator<< (ostream&, const PartTime&);
+};
+
+class Grader : public Undergrad, public Hourly, public PartTime { // derived class
     public:
 		// constructors and destructor
         Grader() : Undergrad() { _classNumber = "NoClassNumber"; }
 
         Grader(string firstName, string lastName, string address, unsigned _IDNumber,
                double GPA, string smajor, string advisorName, string classRank,
-			   string classNumber, unsigned hourlyRate);
+			   string classNumber, unsigned hourlyRate, unsigned int maxHours);
 
 	    Grader(const Grader&); // copy constructor
 
@@ -312,14 +332,14 @@ Undergrad::~Undergrad() {
 
 Grader::Grader(string firstName, string lastName, string address, unsigned _IDNumber,
                double GPA, string smajor, string advisorName, string classRank,
-			   string classNumber, unsigned hourlyRate)
+			   string classNumber, unsigned hourlyRate, unsigned int maxHours)
 	: Undergrad(firstName, lastName, address, _IDNumber, GPA, smajor, advisorName, classRank),
-	  Hourly(hourlyRate)
+	  Hourly(hourlyRate), PartTime(maxHours)
 {
 	_classNumber = classNumber;
 }
 
-Grader::Grader(const Grader& g) : Undergrad(g), Hourly(g) {
+Grader::Grader(const Grader& g) : Undergrad(g), Hourly(g), PartTime(g) {
     // make an independent copy of any dynamic member variables of Student here
     _classNumber = g._classNumber;
 
@@ -386,6 +406,7 @@ ostream& operator<< (ostream& out, const Grader& u) {
     out << "Class Number:\t" << u.getClassNumber() << endl;
 
 	u.Hourly::output(out); // display the Hourly variables
+	u.PartTime::output(out); // display PartTime variables
 
     return out;
 }
@@ -438,30 +459,9 @@ ostream& operator<< (ostream& out, const PerCourse& pc) {
     return out;
 }
 
-class EmployeeKind {
-	public:
-		void output(ostream& out) const { out << *this; }
-
-	friend ostream& operator<< (ostream& out, const EmployeeKind& e);
-};
-
 ostream& operator<< (ostream& out, const EmployeeKind& e) {
 	return out;
 }
-
-class PartTime : public EmployeeKind {
- private:
-	unsigned _maxHours;
- public:
-	PartTime() : _maxHours(0){}
-	PartTime(int maxHours) : _maxHours(maxHours){}
-	~PartTime(){cout << "Destuctor called for PartTime";}
-
-	unsigned getMaxHours() const { return _maxHours; }
-	void output(ostream& out) const { out << *this;}
-
-	 friend ostream& operator<< (ostream&, const PartTime&);
-};
 
 ostream& operator<<(ostream& out, const PartTime& ptime) {
 	ptime.EmployeeKind::output(out);
@@ -519,7 +519,7 @@ int main (void) {
 	cout << "Undergrad s2(Jimmy...):\n" << s2 << endl;
 
 	Grader g1("John", "Doe", "89 Canal Street", 54329876, 3.5, "CS", "Tom Wilkes", "junior",
-			  "COMP.2010", 25.00);
+			  "COMP.2010", 25.00, 1);
 	cout << "Grader g1(John...):\n" << g1 << endl;
 
 	Grader g2(g1); // invoke copy constructor
