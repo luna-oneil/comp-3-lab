@@ -519,7 +519,7 @@ int main (void) {
 	cout << "Undergrad s2(Jimmy...):\n" << s2 << endl;
 
 	Grader g1("John", "Doe", "89 Canal Street", 54329876, 3.5, "CS", "Tom Wilkes", "junior",
-			  "COMP.2010", 25.00, 1);
+			  "COMP.2010", 25, 1);
 	cout << "Grader g1(John...):\n" << g1 << endl;
 
 	Grader g2(g1); // invoke copy constructor
@@ -529,7 +529,7 @@ int main (void) {
 	cout << "NTT Faculty n1(Tom...):\n" << n1 << endl;
 
 	Adjunct a1("John", "Pork", "Hi Street", 24, "social security", "English", 1, 256, 128);
-	cout << "Adjunct Faculty n1(John...):\n" << a1 << endl;
+	cout << "Adjunct Faculty a1(John...):\n" << a1 << endl;
 
   return 0;
 }
