@@ -446,7 +446,7 @@ class PerCourse: public PayKind {
  public:
     PerCourse() : _feePerCourse(0) {}
     PerCourse(int fee) : _feePerCourse(fee) {}
-        ~PerCourse() { cout << "Salaried destructor called\n"; }
+        ~PerCourse() { cout << "PerCourse destructor called\n"; }
 
         unsigned getFee() const { return _feePerCourse; }
 
