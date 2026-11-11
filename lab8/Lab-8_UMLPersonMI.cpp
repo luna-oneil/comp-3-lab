@@ -178,7 +178,10 @@ class PartTime : public EmployeeKind {
 class Grader : public Undergrad, public Hourly, public PartTime { // derived class
     public:
 		// constructors and destructor
-        Grader() : Undergrad() { _classNumber = "NoClassNumber"; }
+        Grader() : Undergrad(), Hourly(), PartTime()
+		{ 
+			_classNumber = "NoClassNumber"; 
+		}
 
         Grader(string firstName, string lastName, string address, unsigned _IDNumber,
                double GPA, string smajor, string advisorName, string classRank,
