@@ -1,18 +1,19 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 // using declarations
 using std::ostream;
 using std::cout;
 using std::endl;
 using std::string;
-
+using std::vector;
 
 class PayKind { // base class - no member variables
 	public:
 		void output(ostream& out) const { out << *this; }
 
-    virtual double payAdvice();
+    virtual double payAdvice() = 0;
 
 	friend ostream& operator<< (ostream&, const PayKind&);
 };
@@ -528,18 +529,33 @@ int main (void) {
 	Grader g1("John", "Doe", "89 Canal Street", 54329876, 3.5, "CS", "Tom Wilkes", "junior",
 			  "COMP.2010", 25, 1);
 	cout << "Grader g1(John...):\n" << g1 << endl;
-	cout << "Pay Advice: " << g1.payAdvice();
+	cout << "Pay Advice is " << g1.payAdvice() << endl << endl;
 
 	Grader g2(g1); // invoke copy constructor
 	cout << "Grader g2(copy of g1 - John...):\n" << g2 << endl;
 
 	NTT n1("Tom", "Wilkes", "Foo Street", 52901256, "123-45-6789", "Computer Science", "Assistant Teaching Professor", 12345);
 	cout << "NTT Faculty n1(Tom...):\n" << n1 << endl;
-	cout << "Pay Advice: " << n1.payAdvice();
+	cout << "Pay Advice is " << n1.payAdvice() << endl << endl;
 
 	Adjunct a1("John", "Pork", "Hi Street", 24, "social security", "English", 1, 256, 128);
 	cout << "Adjunct Faculty a1(John...):\n" << a1 << endl;
-	cout << "Pay Advice: " << a1.payAdvice();
+	cout << "Pay Advice is " << a1.payAdvice() << endl << endl;
+
+	vector<NTT*> nv;
+	nv.push_back(&n1);
+	cout << 0 << ":\n" << *nv[0];
+	cout << "Pay Advice is " << nv[0]->payAdvice() << endl << endl;
+
+	vector<UMLPerson*> uv;
+	uv.push_back(&s1);
+	uv.push_back(&s2);
+	uv.push_back(&g1);
+	uv.push_back(&n1);
+	for (int i = 0; i < 4; i++) {
+		cout << i << ":\n" << *uv[i] << endl;
+	}
+	cout << endl;
 
   return 0;
 }
