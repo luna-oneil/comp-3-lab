@@ -20,12 +20,12 @@ template<typename T>
 T checkInput(T lower, T upper, string message)
 {
 	T in;
-	
+
 	if ( !(cin >> in) || (in < lower) || (in > upper) ) {
 		cin.clear();
 		cin.ignore(IGNORE_SIZE, '\n');
 	}
-	
+
 	return in;
 }
 
@@ -51,62 +51,72 @@ int main()
 	int choice;
 	double inputMass;
 	Mass m;
-	
+
 	do {
 		do{
 		    cout << "Please enter 1 to use Avoirdupois pounds, 2 to use Troy pounds, "
 			     << "3 to use grams, or 0 to exit: ";
-				 
+
 			choice = checkInput(0, 3, "That's not a number between 0 and 3!");
 			break;
-			
+
 		} while (true);
-		
+
 		switch ( choice ) {
 			case 1:
 				do {
 				    cout << "Please enter a mass in Avoirdupois pounds: ";
-				    
+
 				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
 				    break;
-					
+
 		        } while (true);
 				m.setMassAvoirdupoisPounds( inputMass );
 				break;
-				
+
 			case 2:
 				do {
 				    cout << "Please enter a mass in Troy pounds: ";
-				    
+
 				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
 				    break;
-			        
+
 		        } while (true);
 				m.setMassTroyPounds( inputMass );
 				break;
-				
+
 			case 3:
 				do {
 				    cout << "Please enter a mass in grams: ";
-				    
+
 				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
 				    break;
- 
+
 		        } while (true);
 				m.setMassMetricGrams( inputMass );
 				break;
-				
+
 			default:
 				cout << "Thanks for using the mass conversion program!\n";
 				exit( 1 );
-				
+
 		} // end switch
-		
+
 		cout << "Mass in Avoirdupois pounds is " << m.getMassAvoirdupoisPounds() << endl;
 		cout << "Mass in Troy pounds is " << m.getMassTroyPounds() << endl;
 		cout << "Mass in grams is " << m.getMassMetricGrams() << endl << endl;
-		
+
 	} while (true);
-	
+
 	return 0;
 }
+
+class input_exception : public exception {
+ public:
+    input_exception() : error_message("Input out of bounds!") {}
+    input_exception(string message) : error_message(message) {}
+
+    const char* what() const throw() override { return error_message.c_str(); }
+ private:
+    string error_message;
+};
