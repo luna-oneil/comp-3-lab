@@ -12,8 +12,6 @@ class PayKind { // base class - no member variables
 	public:
 		void output(ostream& out) const { out << *this; }
 
-    virtual double payAdvice();
-
 	friend ostream& operator<< (ostream&, const PayKind&);
 };
 
@@ -27,7 +25,6 @@ class Salaried : public PayKind { // derived class
 
 		// accessor functions
 		unsigned getSalary() const { return _annualSalary; }
-        double payAdvice() override { return _annualSalary / 26.0; }
 
 		void output(ostream& out) const { out << *this; }
 
@@ -47,7 +44,6 @@ class Hourly : public PayKind { // derived class
 
 		// accessor functions
 		unsigned getHourlyRate() const { return _hourlyRate; }
-        double payAdvice() override { return _hourlyRate * 40.0; }
 
 		void output(ostream& out) const { out << *this; }
 
@@ -57,23 +53,6 @@ class Hourly : public PayKind { // derived class
 		unsigned _hourlyRate;
 };
 
-class PerCourse: public PayKind {
-    friend ostream& operator<< (ostream&, const PerCourse&);
-
- public:
-    PerCourse() : _feePerCourse(0) {}
-    PerCourse(int fee) : _feePerCourse(fee) {}
-        ~PerCourse() { cout << "PerCourse destructor called\n"; }
-
-    unsigned getFee() const { return _feePerCourse; }
-    double payAdvice() override { return _feePerCourse / 7.0; }
-
-    void output(ostream& out) const { out << *this; }
-
-    friend ostream& operator<< (ostream&, const PerCourse&);
- private:
-    unsigned _feePerCourse;
-};
 
 ostream& operator<< (ostream& out, const PayKind& p) {
     out << "Paykind (no member variables)\n" << endl;
@@ -460,6 +439,23 @@ ostream& operator<< (ostream& out, const NTT& n) {
 
     return out;
 }
+
+class PerCourse: public PayKind {
+    friend ostream& operator<< (ostream&, const PerCourse&);
+
+ public:
+    PerCourse() : _feePerCourse(0) {}
+    PerCourse(int fee) : _feePerCourse(fee) {}
+        ~PerCourse() { cout << "PerCourse destructor called\n"; }
+
+        unsigned getFee() const { return _feePerCourse; }
+
+        void output(ostream& out) const { out << *this; }
+
+    friend ostream& operator<< (ostream&, const PerCourse&);
+ private:
+    unsigned _feePerCourse;
+};
 
 ostream& operator<< (ostream& out, const PerCourse& pc) {
     out << "Fee per course:\t\t" << pc.getFee() << endl;
