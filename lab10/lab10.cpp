@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <stdexcept>
 
 using namespace std;
 
@@ -24,6 +25,7 @@ T checkInput(T lower, T upper, string message)
 	if ( !(cin >> in) || (in < lower) || (in > upper) ) {
 		cin.clear();
 		cin.ignore(IGNORE_SIZE, '\n');
+		throw std::invalid_argument(message);
 	}
 
 	return in;
