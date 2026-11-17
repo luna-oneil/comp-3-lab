@@ -528,15 +528,18 @@ int main (void) {
 	Grader g1("John", "Doe", "89 Canal Street", 54329876, 3.5, "CS", "Tom Wilkes", "junior",
 			  "COMP.2010", 25, 1);
 	cout << "Grader g1(John...):\n" << g1 << endl;
+	cout << "Pay Advice: " << g1.payAdvice();
 
 	Grader g2(g1); // invoke copy constructor
 	cout << "Grader g2(copy of g1 - John...):\n" << g2 << endl;
 
 	NTT n1("Tom", "Wilkes", "Foo Street", 52901256, "123-45-6789", "Computer Science", "Assistant Teaching Professor", 12345);
 	cout << "NTT Faculty n1(Tom...):\n" << n1 << endl;
+	cout << "Pay Advice: " << n1.payAdvice();
 
 	Adjunct a1("John", "Pork", "Hi Street", 24, "social security", "English", 1, 256, 128);
 	cout << "Adjunct Faculty a1(John...):\n" << a1 << endl;
+	cout << "Pay Advice: " << a1.payAdvice();
 
   return 0;
 }
