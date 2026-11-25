@@ -2,12 +2,23 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <exception>
+#include <cstdlib>
 
 using namespace std;
 
 const int IGNORE_SIZE = 256;
 const double MAX_DOUBLE = std::numeric_limits<double>::max();
 
+class input_exception : public exception {
+public:
+	input_exception() : error_message("Input out of bounds!") {}
+	input_exception(string message) : error_message(message) {}
+
+	const char* what() const throw() override { return error_message.c_str(); }
+private:
+	string error_message;
+};
 
 /**
  *  Generic function to input a number, and check whether the number is within
@@ -24,11 +35,11 @@ T checkInput(T lower, T upper, string message)
 	if ( !(cin >> in) || (in < lower) || (in > upper) ) {
 		cin.clear();
 		cin.ignore(IGNORE_SIZE, '\n');
+		throw input_exception(message);
 	}
 
 	return in;
 }
-
 
 class Mass {
 	public:
@@ -45,7 +56,6 @@ class Mass {
 		const double metricGramsPerDram = 1.7718451953125;
 };
 
-
 int main()
 {
 	int choice;
@@ -57,9 +67,13 @@ int main()
 		    cout << "Please enter 1 to use Avoirdupois pounds, 2 to use Troy pounds, "
 			     << "3 to use grams, or 0 to exit: ";
 
-			choice = checkInput(0, 3, "That's not a number between 0 and 3!");
-			break;
-
+			try {
+				choice = checkInput(0, 3, "That's not a number between 0 and 3!");
+				break;
+			}
+			catch (const input_exception& e) {
+				cout << e.what() << endl;
+			}
 		} while (true);
 
 		switch ( choice ) {
@@ -67,9 +81,13 @@ int main()
 				do {
 				    cout << "Please enter a mass in Avoirdupois pounds: ";
 
-				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
-				    break;
-
+					try {
+						inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
+						break;
+					}
+					catch (const input_exception& e) {
+						cout << e.what() << endl;
+					}
 		        } while (true);
 				m.setMassAvoirdupoisPounds( inputMass );
 				break;
@@ -78,9 +96,13 @@ int main()
 				do {
 				    cout << "Please enter a mass in Troy pounds: ";
 
-				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
-				    break;
-
+					try {
+						inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
+						break;
+					}
+					catch (const input_exception& e) {
+						cout << e.what() << endl;
+					}
 		        } while (true);
 				m.setMassTroyPounds( inputMass );
 				break;
@@ -89,9 +111,13 @@ int main()
 				do {
 				    cout << "Please enter a mass in grams: ";
 
-				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
-				    break;
-
+					try {
+						inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
+						break;
+					}
+					catch (const input_exception& e) {
+						cout << e.what() << endl;
+					}
 		        } while (true);
 				m.setMassMetricGrams( inputMass );
 				break;
@@ -110,13 +136,3 @@ int main()
 
 	return 0;
 }
-
-class input_exception : public exception {
- public:
-    input_exception() : error_message("Input out of bounds!") {}
-    input_exception(string message) : error_message(message) {}
-
-    const char* what() const throw() override { return error_message.c_str(); }
- private:
-    string error_message;
-};
